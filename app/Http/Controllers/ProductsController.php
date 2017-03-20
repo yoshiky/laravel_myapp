@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 
 
 class ProductsController extends Controller
@@ -28,15 +29,9 @@ class ProductsController extends Controller
         return view('products.create');
     }
 
-    public function store()
+    public function store(ProductRequest $request)
     {
-        $inputs = \Request::all();
-        if(!$this->product->validate($inputs))
-        {
-            return redirect()->back()->withInput()->withErrors($this->product->errors());
-        }
-
-        Product::create($inputs);
+        Product::create($request->all());
         return redirect('products');
 
     }
