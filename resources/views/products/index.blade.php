@@ -13,7 +13,7 @@
           <th>UPDATED AT</th>
         </tr>
       </thead>
-
+      {!! link_to('products/create', 'Add product', ['class' => 'btn btn-primary']) !!}
       <tbody>
       @foreach($products as $product)
         <tr>
